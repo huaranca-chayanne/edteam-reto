@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+//Estructura que contendrá el Response de la API de Marvel
 type MarvelResponse struct {
 	Code            int
 	Status          string
@@ -33,6 +34,14 @@ type Results struct {
 	Modified    string
 }
 
+/**
+* Método o Función que realiza una solicitud por nombre a la API de marvel (OPCION 1)
+* @Parámetros
+* ts - timestamp
+* publicKey - llave pública
+* hash - md5 de la concatenación de ts + privateKey + publicKey
+* superHeroe - Super heroe ingresado por el usuario
+ */
 func ConsultarPorNombres(ts, publicKey, hash, superHeroe string) {
 	r := strings.NewReplacer(" ", "%20", "\n", "")
 	superHeroe = r.Replace(superHeroe)
@@ -56,8 +65,17 @@ func ConsultarPorNombres(ts, publicKey, hash, superHeroe string) {
 	}
 }
 
+/**
+* Método o Función que realiza una solicitud a la API de Marvel de los 20
+primeros super heroes ordenados por nombre (OPCION 2)
+* @Parámetros
+* ts - timestamp
+* publicKey - llave pública
+* hash - md5 de la concatenación de ts + privateKey + publicKey
+* superHeroe - Super heroe ingresado por el usuario
+*/
 func Listar(ts, publicKey, hash string) {
-	url := "http://gateway.marvel.com/v1/public/characters?orderBy=name&apikey=" + publicKey + "&ts=" + ts + "&hash=" + hash
+	url := "http://gateway.marvel.com/v1/public/characters?orderBy=name&limit=20&apikey=" + publicKey + "&ts=" + ts + "&hash=" + hash
 
 	response, err := http.Get(url)
 	if err != nil {
