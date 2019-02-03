@@ -8,6 +8,5 @@ Opciones
 1. Buscar por nombre
 2. Listar
 ---------------------------------------------------------------
-Elija una opción:
 
 *Si en caso se inserte una opción no mostrada en la lista, se mostrará el siguiente mensaje: **La opción ingresada no es válida...** y culminará la ejecución del programa*
